@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GunData gunData;
-    [SerializeField] private Transform muzzle;
+    [SerializeField] private Transform cam;
 
     float timeSinceLastShot;
 
@@ -45,9 +45,10 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
-                    Debug.Log(hitInfo.transform.name);
+                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+                    damageable?.TakeDamage(gunData.damage);
                 }
 
                 gunData.currentAmmo--;
@@ -61,7 +62,7 @@ public class Gun : MonoBehaviour
     {
         timeSinceLastShot += Time.deltaTime;
 
-        Debug.DrawRay(muzzle.position, muzzle.forward);
+        Debug.DrawRay(cam.position, cam.forward);
     }
 
     private void OnGunShot()
