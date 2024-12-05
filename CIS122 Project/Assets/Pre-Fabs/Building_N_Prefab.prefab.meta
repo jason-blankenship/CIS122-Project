@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:CIS122 Project/Assets/Pre-Fabs/Building_N_Prefab.prefab.meta
 guid: 1b1002f3519f72b4d87b4b91b2ced9f1
 PrefabImporter:
+========
+guid: c83dead6d57182d44846959d0c22a3e9
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> 00c457f5964350d3f9b346b78575d13e4d37dd15:CIS122 Project/Assets/Scripts/Scriptable Objects.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

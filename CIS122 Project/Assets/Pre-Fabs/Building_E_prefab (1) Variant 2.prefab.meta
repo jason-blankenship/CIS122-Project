@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:CIS122 Project/Assets/Pre-Fabs/Building_E_prefab (1) Variant 2.prefab.meta
 guid: 420ef306331ddae44b0b6c9a48dcf7f6
 PrefabImporter:
+========
+guid: 03f6a371a33798c4d94e0cf381ae3478
+DefaultImporter:
+>>>>>>>> 00c457f5964350d3f9b346b78575d13e4d37dd15:CIS122 Project/Assets/Low Poly Guns/Scenes/Main.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
