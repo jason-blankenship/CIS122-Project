@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -8,6 +9,11 @@ public class Gun : MonoBehaviour
     [Header("References")]
     [SerializeField] GunData gunData;
     [SerializeField] private Transform cam;
+    
+    //For Hud (Cole)
+    public int currrentAmmoForHud;
+
+    
 
     float timeSinceLastShot;
 
@@ -33,9 +39,12 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(gunData.reloadTime);
 
         gunData.currentAmmo = gunData.magSize;
+        currrentAmmoForHud = gunData.currentAmmo;
+
 
         gunData.reloading = false;
     }
+
 
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60);
 
@@ -49,11 +58,13 @@ public class Gun : MonoBehaviour
                 {
                     IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
                     damageable?.TakeDamage(gunData.damage);
+
                 }
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 OnGunShot();
+                currrentAmmoForHud--;
             }
         }
     }
