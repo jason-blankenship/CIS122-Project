@@ -1,3 +1,5 @@
+// written by jason blankenship
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,8 +16,12 @@ public class Gun : MonoBehaviour
     public int currrentAmmoForHud;
 
     
-
+    // for reloading
     float timeSinceLastShot;
+    int bulletsFired;
+
+
+    public ParticleSystem muzzleFlash;
 
     private void Start()
     {
@@ -34,15 +40,29 @@ public class Gun : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        gunData.reloading = true;
+        if (gunData.currentAmmoReserve > 0)
+        {
+            gunData.reloading = true;
+            bulletsFired = gunData.magSize - gunData.currentAmmo;
 
-        yield return new WaitForSeconds(gunData.reloadTime);
+            yield return new WaitForSeconds(gunData.reloadTime);
 
-        gunData.currentAmmo = gunData.magSize;
-        currrentAmmoForHud = gunData.currentAmmo;
+            if (gunData.currentAmmoReserve >= bulletsFired)
+            {
 
+                gunData.currentAmmo += bulletsFired;
+                currrentAmmoForHud = gunData.currentAmmo;
+                gunData.currentAmmoReserve -= bulletsFired;
+            }
+            else if (gunData.currentAmmoReserve < bulletsFired)
+            {
+                gunData.currentAmmo += gunData.currentAmmoReserve;
+                currrentAmmoForHud = gunData.currentAmmo;
+                gunData.currentAmmoReserve = 0;
+            }
 
-        gunData.reloading = false;
+            gunData.reloading = false;
+        }
     }
 
 
@@ -78,6 +98,6 @@ public class Gun : MonoBehaviour
 
     private void OnGunShot()
     {
-        
+        muzzleFlash.Play();
     }
 }

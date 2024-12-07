@@ -1,3 +1,5 @@
+// written by jason blankenship
+
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Enumeration;
@@ -21,6 +23,8 @@ public class GunData : ScriptableObject
     public int magSize;
     public float fireRate;          // in rounds per minute
     public float reloadTime;
+    public int maxAmmoReserve;
+    public int currentAmmoReserve;
 
     [HideInInspector]
     public bool reloading;
