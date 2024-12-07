@@ -6,8 +6,14 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
+    private void Start()
+    {
+        Time.timeScale = 0;
+         
+    }
     public void PlayGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //taking active scene getting the build index adding one then loading that
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //doing it again to load the map
     }
