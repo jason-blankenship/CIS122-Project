@@ -16,9 +16,12 @@ public class Gun : MonoBehaviour
     public int currrentAmmoForHud;
 
     
-
+    // for reloading
     float timeSinceLastShot;
     int bulletsFired;
+
+
+    public ParticleSystem muzzleFlash;
 
     private void Start()
     {
@@ -95,6 +98,6 @@ public class Gun : MonoBehaviour
 
     private void OnGunShot()
     {
-        
+        muzzleFlash.Play();
     }
 }

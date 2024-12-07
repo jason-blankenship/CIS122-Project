@@ -1,5 +1,3 @@
-// written by jason blankenship
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
