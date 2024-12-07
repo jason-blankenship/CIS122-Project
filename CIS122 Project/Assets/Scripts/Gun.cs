@@ -1,3 +1,5 @@
+// written by jason blankenship
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ public class Gun : MonoBehaviour
     
 
     float timeSinceLastShot;
+    int bulletsFired;
 
     private void Start()
     {
@@ -34,15 +37,29 @@ public class Gun : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        gunData.reloading = true;
+        if (gunData.currentAmmoReserve > 0)
+        {
+            gunData.reloading = true;
+            bulletsFired = gunData.magSize - gunData.currentAmmo;
 
-        yield return new WaitForSeconds(gunData.reloadTime);
+            yield return new WaitForSeconds(gunData.reloadTime);
 
-        gunData.currentAmmo = gunData.magSize;
-        currrentAmmoForHud = gunData.currentAmmo;
+            if (gunData.currentAmmoReserve >= bulletsFired)
+            {
 
+                gunData.currentAmmo += bulletsFired;
+                currrentAmmoForHud = gunData.currentAmmo;
+                gunData.currentAmmoReserve -= bulletsFired;
+            }
+            else if (gunData.currentAmmoReserve < bulletsFired)
+            {
+                gunData.currentAmmo += gunData.currentAmmoReserve;
+                currrentAmmoForHud = gunData.currentAmmo;
+                gunData.currentAmmoReserve = 0;
+            }
 
-        gunData.reloading = false;
+            gunData.reloading = false;
+        }
     }
 
 
