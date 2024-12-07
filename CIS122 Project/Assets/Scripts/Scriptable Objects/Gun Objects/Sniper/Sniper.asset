@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d40bf36c5de304a962ac5d3ffe1435, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  name: 
-  damage: 0
-  maxDistance: 0
+  name: Sniper Rifle
+  damage: 100
+  maxDistance: 500
   currentAmmo: 0
-  magSize: 0
-  fireRate: 0
-  reloadTime: 0
-  maxAmmoReserve: 0
-  currentAmmoReserve: 0
+  magSize: 1
+  fireRate: 100
+  reloadTime: 2.5
+  maxAmmoReserve: 50
+  currentAmmoReserve: 45
   reloading: 0
