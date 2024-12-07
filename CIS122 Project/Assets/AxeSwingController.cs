@@ -15,14 +15,18 @@ public class AxeSwingController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public void SwingAxe()
+    {
+        animator.SetTrigger("Swing");
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Enetered Swinging Range");
-            animator.SetTrigger("Swing");
-            Debug.Log("Swing");
+            SwingAxe();
+            Debug.Log("Axe Swung");
         }
 
     }
