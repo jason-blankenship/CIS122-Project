@@ -11,6 +11,11 @@ public class Target : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
+            WaveSpawner waveSpawner = FindObjectOfType<WaveSpawner>();
+            if (waveSpawner != null )
+            {
+                waveSpawner.ZombieDestroyed();
+            }
             Destroy(gameObject);
         }
     }
