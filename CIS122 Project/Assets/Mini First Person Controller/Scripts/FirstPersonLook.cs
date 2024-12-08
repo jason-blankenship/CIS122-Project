@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FirstPersonLook : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class FirstPersonLook : MonoBehaviour
     Vector2 velocity;
     Vector2 frameVelocity;
 
-
+    public string sceneName = SceneManager.GetActiveScene().name;
     void Reset()
     {
         // Get the character from the FirstPersonMovement in parents.
@@ -20,7 +21,10 @@ public class FirstPersonLook : MonoBehaviour
     void Start()
     {
         // Lock the mouse cursor to the game screen.
-        Cursor.lockState = CursorLockMode.Locked;
+        if (sceneName == "SampleScene")
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void Update()
