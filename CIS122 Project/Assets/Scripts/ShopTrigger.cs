@@ -6,15 +6,17 @@ using UnityEngine;
 
 public class ShopTrigger : MonoBehaviour
 {
-   private void OnTriggerEnter2D(Collider2D other)
+   private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
+       if (other.CompareTag("Player"))
+       {
             ShopManager.instance.ToggleShop();
-        }
+       }
+
+        
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {

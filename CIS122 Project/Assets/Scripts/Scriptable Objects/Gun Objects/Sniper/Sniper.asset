@@ -15,10 +15,10 @@ MonoBehaviour:
   name: Sniper Rifle
   damage: 100
   maxDistance: 500
-  currentAmmo: 1
+  currentAmmo: 0
   magSize: 1
   fireRate: 100
   reloadTime: 2.5
   maxAmmoReserve: 50
-  currentAmmoReserve: 50
+  currentAmmoReserve: 49
   reloading: 0

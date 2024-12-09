@@ -9,8 +9,12 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] GunData gunData;
+    [SerializeField] public GunData gunData;
     [SerializeField] private Transform cam;
+
+    public Camera playerCam;
+
+
     
     //For Hud (Cole)
     public int currrentAmmoForHud;
@@ -25,8 +29,20 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        if (playerCam == null)
+        {
+            playerCam = Camera.main;
+            cam = playerCam.transform;
+        }
+
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += StartReload;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerShoot.shootInput -= Shoot;
+        PlayerShoot.reloadInput -= StartReload;
     }
 
     public void StartReload()
