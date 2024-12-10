@@ -11,24 +11,44 @@ public class FirstPersonLook : MonoBehaviour
     Vector2 velocity;
     Vector2 frameVelocity;
 
+    [SerializeField] private MainMenu mainMenuScript;
     public string sceneName;
+    private KeyCode pauseKey = KeyCode.Escape;
+    public GameObject myGameObj;
+    public Transform mainMenuTransform;
+    public Transform pauseMenuTransform;
+    public bool isPaused;
+
+
+
     void Reset()
     {
         // Get the character from the FirstPersonMovement in parents.
         character = GetComponentInParent<FirstPersonMovement>().transform;
     }
 
-    void Start()
+    public void Start()
     {
         sceneName = SceneManager.GetActiveScene().name;
         // Lock the mouse cursor to the game screen.
-        if (sceneName == "SampleScene")
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-    }
+       
+        Cursor.lockState = CursorLockMode.Locked;
 
-    void Update()
+        if (mainMenuScript == null)
+        {
+        GameObject canvas = GameObject.Find("Canvas");
+            if (canvas != null)
+                {
+                    mainMenuScript = canvas.GetComponentInChildren<MainMenu>();
+                }
+            }
+    }
+    public void Update() 
+    {   
+        HandlePause();
+        HandleMouseLook();
+    }
+    public void HandleMouseLook()
     {
         // Get smooth velocity.
         Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
@@ -40,5 +60,27 @@ public class FirstPersonLook : MonoBehaviour
         // Rotate camera up-down and controller left-right from velocity.
         transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
         character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+
+        
     }
+    private void HandlePause() 
+    {
+        if (Input.GetKeyDown(pauseKey) && mainMenuScript != null)
+        {
+            if (Time.timeScale == 1)
+            {
+                mainMenuScript.Pause();
+                isPaused = true;
+
+            }
+            else
+            {
+                mainMenuScript.UnPause();
+                isPaused = false;
+
+            }
+        }
+    }
+    
+    
 }
