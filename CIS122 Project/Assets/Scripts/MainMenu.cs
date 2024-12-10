@@ -8,9 +8,9 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
-        mainMenu.SetActive(true);
         pauseMenu.SetActive(false);
-
+        mainMenu.SetActive(true);
+        
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -28,7 +28,6 @@ public class MainMenu : MonoBehaviour
 
     public void Pause()
     {
-        mainMenu.SetActive(false);
         pauseMenu.SetActive(true);
 
         Time.timeScale = 0;
@@ -38,7 +37,6 @@ public class MainMenu : MonoBehaviour
 
     public void UnPause()
     {
-
         pauseMenu.SetActive(false);
 
         Time.timeScale = 1;
@@ -48,6 +46,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        //pauseMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
 

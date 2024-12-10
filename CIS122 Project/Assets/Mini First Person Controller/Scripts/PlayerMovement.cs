@@ -1,53 +1,189 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.IO;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
 
-    public float speed = 5;
-    public float gravity = -9.18f;
-    public float jumpHeight = 3f;
+    [Header("Movement")]
+    private float moveSpeed;
+    public float sprintSpeed;
+    public float walkSpeed;
 
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
+    public float groundDrag;
 
-    Vector3 velocity;
-    bool isGrounded;
-    void Update()
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMultiplier;
+    public int maxJumps;
+    bool readyTojump;
+
+    [Header("Crouching")]
+    public float crouchSpeed;
+    public float crouchYScale;
+    private float startYScale;
+
+
+    [Header("Keybinds")]
+    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
+    public KeyCode crouchKey = KeyCode.LeftControl;
+
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    bool grounded;
+
+
+
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+    int airJumps;
+
+    Vector3 moveDirection;
+
+    Rigidbody rb;
+
+    public MovementState state;
+
+    public enum MovementState
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        walking,
+        sprinting,
+        crouching,
+        air
+    }
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+        readyTojump = true;
+        airJumps = maxJumps;
+        startYScale = transform.localScale.y;
+    }
 
-        if (Input.GetKey("left shift") && isGrounded)
+    // Update is called once per frame
+    private void Update()
+    {
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
+        MyInput();
+        SpeedControl();
+        StateHandeler();
+
+        if (grounded)
         {
-            speed = 10;
+            rb.drag = groundDrag;
+            airJumps = maxJumps;
         }
         else
+            rb.drag = 0;
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    void MyInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        //when to jump
+        if (Input.GetKey(jumpKey) && readyTojump && airJumps > 0)
         {
-            speed = 5;
+            airJumps--;
+
+            readyTojump = false;
+
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+        if (Input.GetKeyDown(crouchKey))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            rb.AddForce(Vector3.down, ForceMode.Impulse);
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move * speed * Time.deltaTime);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetKeyUp(crouchKey))
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            rb.AddForce(Vector3.down, ForceMode.Impulse);
+        }
+    }
+
+    private void StateHandeler()
+    {
+        if (grounded && Input.GetKey(crouchKey))
+        {
+            state = MovementState.crouching;
+            moveSpeed = crouchSpeed;
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        else if (grounded && Input.GetKey(sprintKey))
+        {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
 
-        controller.Move(velocity * Time.deltaTime);
+        else if (grounded)
+        {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+
+        else
+        {
+            state = MovementState.air;
+        }
+    }
+
+    private void MovePlayer()
+    {   //find movement direciton
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        //on ground
+        if (grounded)
+            rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
+
+        //in air
+        else if (!grounded)
+            rb.AddForce(10f * airMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Force);
+
+    }
+
+    private void SpeedControl()
+    {
+
+        Vector3 flatVel = new(rb.velocity.x, 0f, rb.velocity.z);
+
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+
+    }
+
+    private void Jump()
+
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void ResetJump()
+    {
+        readyTojump = true;
+
     }
 }
