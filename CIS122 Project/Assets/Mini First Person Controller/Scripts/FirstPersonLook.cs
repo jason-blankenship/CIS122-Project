@@ -11,7 +11,7 @@ public class FirstPersonLook : MonoBehaviour
     Vector2 velocity;
     Vector2 frameVelocity;
 
-    public string sceneName = SceneManager.GetActiveScene().name;
+    public string sceneName;
     void Reset()
     {
         // Get the character from the FirstPersonMovement in parents.
@@ -20,6 +20,7 @@ public class FirstPersonLook : MonoBehaviour
 
     void Start()
     {
+        sceneName = SceneManager.GetActiveScene().name;
         // Lock the mouse cursor to the game screen.
         if (sceneName == "SampleScene")
         {
