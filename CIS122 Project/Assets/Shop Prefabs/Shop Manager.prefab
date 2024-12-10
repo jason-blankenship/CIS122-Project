@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1615953013900555587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3727977563629255508}
+  - component: {fileID: 6091542991764905068}
+  m_Layer: 0
+  m_Name: Shop Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3727977563629255508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615953013900555587}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6091542991764905068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615953013900555587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04ab9eb7a0bf5047a4a4b4954427ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 300
+  products:
+  - name: Max Ammo
+    cost: 50
+    image: {fileID: 21300000, guid: b365fa281c196504d9806883facb0293, type: 3}
+    gunPrefab: {fileID: 0}
+    itemRef: {fileID: 0}
+  - name: Heal
+    cost: 50
+    image: {fileID: 0}
+    gunPrefab: {fileID: 4418261790634080816, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
+    itemRef: {fileID: 0}
+  - name: Assult Rifle
+    cost: 100
+    image: {fileID: 21300000, guid: 839bd50c2b080494b81c5d88793e285b, type: 3}
+    gunPrefab: {fileID: 4418261790634080816, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
+    itemRef: {fileID: 0}
+  - name: Sniper Rifle
+    cost: 100
+    image: {fileID: 21300000, guid: 86df498406f97b646aedb18b7ab80a38, type: 3}
+    gunPrefab: {fileID: 4018706436863008056, guid: 3bb8cfe883ca860429ff5e848497a250, type: 3}
+    itemRef: {fileID: 0}
+  moneyText: {fileID: 0}
+  shopUI: {fileID: 0}
+  shopContent: {fileID: 0}
+  itemPrefab: {fileID: 5681946934815401222, guid: 29d21486dfb673546bcfdacc2fb683d5, type: 3}

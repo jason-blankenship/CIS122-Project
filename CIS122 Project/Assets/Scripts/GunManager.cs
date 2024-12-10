@@ -38,6 +38,7 @@ public class GunManager : MonoBehaviour
             
             currentGunScript.gunData.currentAmmoReserve = currentGunScript.gunData.maxAmmoReserve;
             currentGunScript.gunData.currentAmmo = currentGunScript.gunData.magSize;
+            currentGunScript.gunData.reloading = false;
 
             
             PlayerShoot.shootInput += currentGunScript.Shoot;
