@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,13 @@ public class WaveSpawner : MonoBehaviour
     public Transform[] spawnPoints; // Array of potential spawn points
     public Transform player; // Reference to the player's Transform
     public Camera mainCamera; // Reference to the main camera
-    public int currentWave = 1;
+    public static int currentWave = 1;
     public int baseAmount = 5; // Base number of zombies in the first wave
     public int increment = 3; // Zombies added per wave
     public float timeBetweenSpawn = 4f;
     private int zombiesAlive = 0; // Tracks zombies alive
     private float elapsedTime = 0f;
-
+    public static float timePassed;
     private Dictionary<Transform, bool> spawnPointVisibility;
 
     void Start()
@@ -27,11 +28,14 @@ public class WaveSpawner : MonoBehaviour
             spawnPointVisibility[spawnPoint] = false; // Initialize all spawn points as not visible
         }
         StartCoroutine(SpawnWave());
+
+        
     }
 
     void Update()
     {
         elapsedTime += Time.deltaTime;
+        timePassed = elapsedTime;
 
         // Update visibility of spawn points
         UpdateSpawnPointVisibility();
@@ -131,7 +135,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     public float GetElapsedTime()
-    {
-        return elapsedTime;
+    {        
+        return elapsedTime;   
     }
 }

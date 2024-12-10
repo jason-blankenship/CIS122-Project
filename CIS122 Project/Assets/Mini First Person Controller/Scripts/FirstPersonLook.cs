@@ -12,6 +12,8 @@ public class FirstPersonLook : MonoBehaviour
     Vector2 frameVelocity;
 
     [SerializeField] private MainMenu mainMenuScript;
+    [SerializeField] private PlayerHealth hitPoints;
+    
     public string sceneName;
     private KeyCode pauseKey = KeyCode.Escape;
     public GameObject myGameObj;
@@ -36,17 +38,19 @@ public class FirstPersonLook : MonoBehaviour
 
         if (mainMenuScript == null)
         {
-        GameObject canvas = GameObject.Find("Canvas");
+            GameObject canvas = GameObject.Find("Canvas");
             if (canvas != null)
-                {
-                    mainMenuScript = canvas.GetComponentInChildren<MainMenu>();
-                }
+            {
+                mainMenuScript = canvas.GetComponentInChildren<MainMenu>();
             }
+        }
     }
     public void Update() 
     {   
-        HandlePause();
         HandleMouseLook();
+        HandlePause();
+        HandleDeath();
+        
     }
     public void HandleMouseLook()
     {
@@ -81,6 +85,12 @@ public class FirstPersonLook : MonoBehaviour
             }
         }
     }
-    
+    private void HandleDeath()
+    {
+        if (hitPoints.currHealth <= 0)
+        {
+            mainMenuScript.EndGame();
+        }
+    }
     
 }
