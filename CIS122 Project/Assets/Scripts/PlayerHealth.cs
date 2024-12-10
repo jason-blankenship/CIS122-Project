@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public float maxHealth = 100f;
     public float currHealth;
+
+    public int numberOfHeals;
+    public float healthGainedFromHeal;
     
     //For Axe Swing Animation 
     public AxeSwingController axeSwingController;
@@ -22,6 +25,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     void Start()
     {
         currHealth = maxHealth;
+        
 
         if(axeSwingController == null)
         {
@@ -37,6 +41,24 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (axeSwingController != null)
         {
             axeSwingController.SwingAxe();
+        }
+    }
+
+    // written by jason (for healing item)
+
+    public void HealPlayer()
+    {
+        if (numberOfHeals > 0)
+        {
+            numberOfHeals--;
+            if (currHealth + healthGainedFromHeal <= maxHealth)
+            {
+                currHealth += healthGainedFromHeal;
+            }
+            else
+            {
+                currHealth = maxHealth;
+            }
         }
     }
 }

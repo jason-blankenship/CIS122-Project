@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1025843812028789095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.293, z: 1.731}
+  m_LocalPosition: {x: 0, y: 0.187, z: 1.035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4898,6 +4898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3060083344357736189}
   - component: {fileID: 607603789481865770}
+  - component: {fileID: 8213989241081070869}
   m_Layer: 0
   m_Name: Assult Rifle
   m_TagString: Untagged
@@ -4914,7 +4915,7 @@ Transform:
   m_GameObject: {fileID: 4418261790634080816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.252, y: -0.665, z: 0.14}
+  m_LocalPosition: {x: 0.11, y: 0.04, z: 0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4936,8 +4937,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 032b112b8ec04384c87a4c8a6e67069c, type: 2}
   cam: {fileID: 0}
+  playerCam: {fileID: 0}
   currrentAmmoForHud: 0
   muzzleFlash: {fileID: 5773403247939990983}
+--- !u!114 &8213989241081070869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418261790634080816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3326a64e0cbf8cb4c8ce5dcafb21d25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionOffset: {x: 0.11, y: 0.04, z: 0.68}
 --- !u!1001 &5500651755445830493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4960,15 +4975,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33269b2b610f4c245a712795c1927939, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33269b2b610f4c245a712795c1927939, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.099
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33269b2b610f4c245a712795c1927939, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.745
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33269b2b610f4c245a712795c1927939, type: 3}
       propertyPath: m_LocalRotation.w

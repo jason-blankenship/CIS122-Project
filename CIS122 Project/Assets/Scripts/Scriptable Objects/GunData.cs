@@ -26,7 +26,7 @@ public class GunData : ScriptableObject
     public int maxAmmoReserve;
     public int currentAmmoReserve;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool reloading;
 
 }

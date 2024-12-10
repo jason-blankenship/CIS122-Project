@@ -20,5 +20,5 @@ MonoBehaviour:
   fireRate: 100
   reloadTime: 2.5
   maxAmmoReserve: 50
-  currentAmmoReserve: 45
+  currentAmmoReserve: 49
   reloading: 0
