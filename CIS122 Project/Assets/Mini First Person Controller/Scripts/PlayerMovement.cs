@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
+    public KeyCode healKey = KeyCode.F; // for using health item (Jason)
 
     //fields for checking ground
     [Header("Ground Check")]
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
     public bool groundPound;
 
-
+   
 
     public Transform orientation; //a transform for orentation game obj
 
@@ -52,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb; //puling the ridig body from first person controller
 
     public MovementState state; //changes based on movent
+
+
+    [Header("Healing")]
+    public PlayerHealth playerHealth; // reference to player health (Jason)
 
     public enum MovementState //state class for moventstates changes bassed on movement
     {
@@ -121,6 +126,11 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z); //retun to starting yscale height
             rb.AddForce(Vector3.down, ForceMode.Impulse); //keeps player on gorund so they dont fly up upon uncrouching
+        }
+        
+        if (Input.GetKeyDown(healKey))
+        {
+            playerHealth.HealPlayer();
         }
     }
 

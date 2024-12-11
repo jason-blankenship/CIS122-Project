@@ -21,7 +21,10 @@ public class ShopManager : MonoBehaviour
     public Transform shopContent;
     public GameObject itemPrefab;
 
+    public PlayerHealth playerHealth;
+
     private GunManager gunManager;
+    
 
 
 
@@ -97,6 +100,12 @@ public class ShopManager : MonoBehaviour
 
             case "Max Ammo":
                 gunManager.MaxAmmo();
+                break;
+
+            case "Heal":
+
+                playerHealth.numberOfHeals++;
+                
                 break;
 
             default:

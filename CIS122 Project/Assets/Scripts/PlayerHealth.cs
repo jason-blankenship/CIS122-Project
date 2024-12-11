@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float currHealth;
 
     public int numberOfHeals;
-    public float healthGainedFromHeal;
+    public float healthGainedFromHeal = 30f;
     
     //For Axe Swing Animation 
     public AxeSwingController axeSwingController;
@@ -61,4 +61,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             }
         }
     }
+
+    
 }
