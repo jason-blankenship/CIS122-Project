@@ -3,45 +3,35 @@ using UnityEngine.SceneManagement;
 
 public class FirstPersonLook : MonoBehaviour
 {
-    [SerializeField]
-    Transform character;
-    public float sensitivity = 2;
-    public float smoothing = 1.5f;
+    public float sensX; // mouse sens
+    public float sensY;
 
-    Vector2 velocity;
-    Vector2 frameVelocity;
+    public Transform orientation; //orientation for player
 
-    [SerializeField] private MainMenu mainMenuScript;
-    [SerializeField] private PlayerHealth hitPoints;
+    float xRotation; // camera rotations
+    float yRotation;
+
+    [SerializeField] private MainMenu mainMenuScript; //type from mainmenu class to pause
+    [SerializeField] private PlayerHealth hitPoints; //type from playerhealth class to get hitpoints
     
-    public string sceneName;
-    private KeyCode pauseKey = KeyCode.Escape;
-    public GameObject myGameObj;
-    public Transform mainMenuTransform;
-    public Transform pauseMenuTransform;
-    public bool isPaused;
+    public string sceneName; //for setting the scene
 
-
-
-    void Reset()
-    {
-        // Get the character from the FirstPersonMovement in parents.
-        character = GetComponentInParent<FirstPersonMovement>().transform;
-    }
+    private KeyCode pauseKey = KeyCode.Escape; //pause key declaration
+    public bool isPaused; //for chgecking if paused
 
     public void Start()
     {
-        sceneName = SceneManager.GetActiveScene().name;
+        sceneName = SceneManager.GetActiveScene().name; //setting scene name to "SampleScene"
+
         // Lock the mouse cursor to the game screen.
-       
         Cursor.lockState = CursorLockMode.Locked;
 
-        if (mainMenuScript == null)
+        if (mainMenuScript == null) //checking if mainMenuScript exist
         {
-            GameObject canvas = GameObject.Find("Canvas");
+            GameObject canvas = GameObject.Find("Canvas"); //satting a gameobject to canvan in a different scene
             if (canvas != null)
             {
-                mainMenuScript = canvas.GetComponentInChildren<MainMenu>();
+                mainMenuScript = canvas.GetComponentInChildren<MainMenu>(); //making getting children of main meu scene
             }
         }
     }
@@ -54,39 +44,40 @@ public class FirstPersonLook : MonoBehaviour
     }
     public void HandleMouseLook()
     {
-        // Get smooth velocity.
-        Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        Vector2 rawFrameVelocity = Vector2.Scale(mouseDelta, Vector2.one * sensitivity);
-        frameVelocity = Vector2.Lerp(frameVelocity, rawFrameVelocity, 1 / smoothing);
-        velocity += frameVelocity;
-        velocity.y = Mathf.Clamp(velocity.y, -90, 90);
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX; //gets xInput for mouse
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY; //gets yInput for mouse
 
-        // Rotate camera up-down and controller left-right from velocity.
-        transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
-        character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+        yRotation += mouseX;
 
-        
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f); //clapms the rotation
+
+        //rotate cam and orientation
+        //Quaternion 
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); // to apply the rotations this one rotates the camera among both axis
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0); // this rotates the player among the y axis
     }
     private void HandlePause() 
     {
-        if (Input.GetKeyDown(pauseKey) && mainMenuScript != null)
+        if (Input.GetKeyDown(pauseKey) && mainMenuScript != null) //if esc is pressed
         {
-            if (Time.timeScale == 1)
+            if (Time.timeScale == 1) //if already unpaused
             {
-                mainMenuScript.Pause();
-                isPaused = true;
+                mainMenuScript.Pause(); //call pause from other script
+                isPaused = true; //set ispaused to true
 
             }
             else
             {
-                mainMenuScript.UnPause();
-                isPaused = false;
+                mainMenuScript.UnPause(); //call unpause from MainMenu Scrpit
+                isPaused = false; //set ispaused to false
 
             }
         }
     }
     private void HandleDeath()
     {
+        //checks if currHealth is above 0 if not calls endgame from mainmenu script
         if (hitPoints.currHealth <= 0)
         {
             mainMenuScript.EndGame();
