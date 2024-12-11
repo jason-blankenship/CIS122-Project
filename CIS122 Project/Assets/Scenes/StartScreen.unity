@@ -753,12 +753,10 @@ MonoBehaviour:
   mainMenu: {fileID: 2056990269}
   pauseMenu: {fileID: 1758846235}
   deathScreen: {fileID: 138918241}
-  waveCount: {fileID: 0}
   waveNumber: 0
-  timeAmount: {fileID: 0}
   timePassed: 0
-  timeStatText: {fileID: 0}
-  roundStatText: {fileID: 0}
+  timeStatText: {fileID: 1956122157}
+  roundStatText: {fileID: 1153780273}
 --- !u!1 &236994209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,9 +1105,7 @@ MonoBehaviour:
   mainMenu: {fileID: 2056990269}
   pauseMenu: {fileID: 1758846235}
   deathScreen: {fileID: 138918241}
-  waveCount: {fileID: 0}
   waveNumber: 0
-  timeAmount: {fileID: 0}
   timePassed: 0
   timeStatText: {fileID: 1956122157}
   roundStatText: {fileID: 1153780273}
@@ -2446,9 +2442,7 @@ MonoBehaviour:
   mainMenu: {fileID: 2056990269}
   pauseMenu: {fileID: 1758846235}
   deathScreen: {fileID: 138918241}
-  waveCount: {fileID: 0}
   waveNumber: 0
-  timeAmount: {fileID: 0}
   timePassed: 0
   timeStatText: {fileID: 0}
   roundStatText: {fileID: 0}
@@ -3042,9 +3036,7 @@ MonoBehaviour:
   mainMenu: {fileID: 2056990269}
   pauseMenu: {fileID: 1758846235}
   deathScreen: {fileID: 138918241}
-  waveCount: {fileID: 0}
   waveNumber: 0
-  timeAmount: {fileID: 0}
   timePassed: 0
   timeStatText: {fileID: 0}
   roundStatText: {fileID: 0}
