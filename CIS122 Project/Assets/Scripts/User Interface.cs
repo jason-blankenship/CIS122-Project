@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+// COLE GIBEAU
+
 public class UserInterface : MonoBehaviour
 {
     // Player Health variables
@@ -16,7 +18,10 @@ public class UserInterface : MonoBehaviour
     //Reload Variables
     public GunManager gunManager;
     public TextMeshProUGUI ammoText;
+    public TextMeshProUGUI ammoReserve;
 
+    //Current Wave variables
+    public TextMeshProUGUI waveText;
 
     // Update is called once per frame
     void Update()
@@ -29,5 +34,16 @@ public class UserInterface : MonoBehaviour
 
         //Gun Hud Elements
         ammoText.text = $"Ammo : {gunManager.currentGunScript.gunData.currentAmmo.ToString()}";
+        ammoReserve.text =gunManager.currentGunScript.gunData.currentAmmoReserve.ToString();
+
+        //Wave Hud Elements
+    }
+
+    public void UpdateWaveDisplay(int currentWave)
+    {
+        if (waveText != null)
+        {
+            waveText.text = "Wave: " + currentWave;
+        }
     }
 }

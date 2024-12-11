@@ -20,6 +20,9 @@ public class WaveSpawner : MonoBehaviour
     public static float timePassed;
     private Dictionary<Transform, bool> spawnPointVisibility;
 
+
+    public UserInterface userInterface;
+
     void Start()
     {
         spawnPointVisibility = new Dictionary<Transform, bool>();
@@ -46,6 +49,12 @@ public class WaveSpawner : MonoBehaviour
             currentWave++;
             StartCoroutine(SpawnWave());
         }
+
+        if (userInterface != null)
+        {
+            userInterface.UpdateWaveDisplay(currentWave);
+        }
+
     }
 
     void UpdateSpawnPointVisibility()
