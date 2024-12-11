@@ -941,12 +941,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5721f45a4372242a249d3bb70958a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprintSpeed: 15
-  walkSpeed: 10
-  groundDrag: 5
-  jumpForce: 12
+  sprintSpeed: 13
+  walkSpeed: 8
+  groundDrag: 4
+  jumpForce: 15
   jumpCooldown: 0.25
-  airMultiplier: 0.4
+  airMultiplier: 0.3
   maxJumps: 1
   crouchSpeed: 3.5
   crouchYScale: 0.5
@@ -1763,6 +1763,10 @@ PrefabInstance:
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 54063890643546284, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114103969153859672, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
       propertyPath: defaultFOV
       value: 90
@@ -1802,6 +1806,10 @@ PrefabInstance:
     - target: {fileID: 114963311885979670, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136877096903737240, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
+      propertyPath: m_Direction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
