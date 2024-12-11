@@ -12,20 +12,22 @@ public class UserInterface : MonoBehaviour
     public TextMeshProUGUI healthText;
     public Slider healthSlider;
 
+
     //Reload Variables
-    public Gun gun;
+    public GunManager gunManager;
     public TextMeshProUGUI ammoText;
 
 
     // Update is called once per frame
     void Update()
     {
+        
         //Player Health Hud Elements
         healthText.text = $"Health: {playerHealth.CurrHealth.ToString()} ";
 
         healthSlider.value = playerHealth.currHealth / playerHealth.maxHealth;
 
         //Gun Hud Elements
-        ammoText.text = $"Ammo : {gun.currrentAmmoForHud.ToString()}";
+        ammoText.text = $"Ammo : {gunManager.currentGunScript.gunData.currentAmmo.ToString()}";
     }
 }
