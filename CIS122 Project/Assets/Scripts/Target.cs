@@ -17,7 +17,7 @@ public class Target : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
-            // Nathan Stoffel
+            // Updates zombies alive in spawner script
             WaveSpawner waveSpawner = FindObjectOfType<WaveSpawner>();
             if (waveSpawner != null )
             {
