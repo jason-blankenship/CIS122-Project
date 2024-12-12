@@ -20,10 +20,12 @@ public class ShopManager : MonoBehaviour
     public GameObject shopUI;
     public Transform shopContent;
     public GameObject itemPrefab;
+    public int moneyIncrementAmount = 2;
+
 
     private GunManager gunManager;
 
-
+    public UserInterface userInterface;
 
     private void Awake()
     {
@@ -39,6 +41,13 @@ public class ShopManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Update()
+    {
+        if (userInterface != null)
+        {
+            userInterface.UpdateMoney(money);
+        }
+    }
     private void Start()
     {
         gunManager = FindObjectOfType<GunManager>();
@@ -151,5 +160,10 @@ public class ShopManager : MonoBehaviour
 
         [HideInInspector]
         public GameObject itemRef;
+    }
+
+    public void addMoney()
+    {
+        money += moneyIncrementAmount;
     }
 }

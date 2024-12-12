@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        currHealth -= damage;
+        if (currHealth >= 0) { currHealth -= damage; }
         Debug.Log($"Health damaged {damage} amount");
 
         if (axeSwingController != null)

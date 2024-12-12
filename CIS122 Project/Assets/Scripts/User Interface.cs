@@ -23,6 +23,10 @@ public class UserInterface : MonoBehaviour
     //Current Wave variables
     public TextMeshProUGUI waveText;
 
+    //Money Variables
+    public TextMeshProUGUI moneyText;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -36,7 +40,7 @@ public class UserInterface : MonoBehaviour
         ammoText.text = $"Ammo : {gunManager.currentGunScript.gunData.currentAmmo.ToString()}";
         ammoReserve.text =gunManager.currentGunScript.gunData.currentAmmoReserve.ToString();
 
-        //Wave Hud Elements
+
     }
 
     public void UpdateWaveDisplay(int currentWave)
@@ -44,6 +48,14 @@ public class UserInterface : MonoBehaviour
         if (waveText != null)
         {
             waveText.text = "Wave: " + currentWave;
+        }
+    }
+
+    public void UpdateMoney(int money)
+    {
+        if (moneyText != null)
+        {
+            moneyText.text = "$" + money;
         }
     }
 }
