@@ -78,7 +78,7 @@ public class WaveSpawner : MonoBehaviour
             while (!spawned)
             {
                 // Get a valid spawn point within 150 meters of the player
-                Transform spawnPoint = GetRandomSpawnPointWithinDistance(50f);
+                Transform spawnPoint = GetRandomSpawnPointWithinDistance(75f);
 
                 if (spawnPoint != null && !spawnPointVisibility[spawnPoint])
                 {

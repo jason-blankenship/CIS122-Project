@@ -2885,7 +2885,7 @@ MonoBehaviour:
   playerHealth: {fileID: 869979653}
   healthText: {fileID: 265497579}
   healthSlider: {fileID: 932536221}
-  healsText: {fileID: 0}
+  healsText: {fileID: 2142902846}
   gunManager: {fileID: 755561655}
   ammoText: {fileID: 1467562563}
   ammoReserve: {fileID: 217834916}
@@ -3083,7 +3083,7 @@ PrefabInstance:
       objectReference: {fileID: 1858880388}
     - target: {fileID: 626820212449811059, guid: b91867dd525cf7c4fbc7d288a7201093, type: 3}
       propertyPath: timeBetweenSpawn
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4938683755306948234, guid: b91867dd525cf7c4fbc7d288a7201093, type: 3}
       propertyPath: m_Name
