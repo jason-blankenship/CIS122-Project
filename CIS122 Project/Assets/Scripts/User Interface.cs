@@ -13,7 +13,7 @@ public class UserInterface : MonoBehaviour
     public PlayerHealth playerHealth;
     public TextMeshProUGUI healthText;
     public Slider healthSlider;
-
+    public TextMeshProUGUI healsText;
 
     //Reload Variables
     public GunManager gunManager;
@@ -32,9 +32,11 @@ public class UserInterface : MonoBehaviour
     {
         
         //Player Health Hud Elements
-        healthText.text = $"Health: {playerHealth.CurrHealth.ToString()} ";
+        healthText.text = $"Health : {playerHealth.CurrHealth.ToString()} ";
 
         healthSlider.value = playerHealth.currHealth / playerHealth.maxHealth;
+
+        healsText.text = "Heals : " + playerHealth.numberOfHeals;
 
         //Gun Hud Elements
         ammoText.text = $"Ammo : {gunManager.currentGunScript.gunData.currentAmmo.ToString()}";
