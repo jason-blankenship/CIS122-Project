@@ -3081,6 +3081,10 @@ PrefabInstance:
       propertyPath: userInterface
       value: 
       objectReference: {fileID: 1858880388}
+    - target: {fileID: 626820212449811059, guid: b91867dd525cf7c4fbc7d288a7201093, type: 3}
+      propertyPath: timeBetweenSpawn
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4938683755306948234, guid: b91867dd525cf7c4fbc7d288a7201093, type: 3}
       propertyPath: m_Name
       value: Spawner
