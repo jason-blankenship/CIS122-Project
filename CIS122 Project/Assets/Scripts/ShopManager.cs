@@ -23,7 +23,10 @@ public class ShopManager : MonoBehaviour
     public int moneyIncrementAmount = 2;
 
 
+    public PlayerHealth playerHealth;
+
     private GunManager gunManager;
+    
 
     public UserInterface userInterface;
 
@@ -106,6 +109,12 @@ public class ShopManager : MonoBehaviour
 
             case "Max Ammo":
                 gunManager.MaxAmmo();
+                break;
+
+            case "Heal":
+
+                playerHealth.numberOfHeals++;
+                
                 break;
 
             default:
