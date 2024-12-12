@@ -17,7 +17,7 @@ public class Target : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
-
+            // Nathan Stoffel
             WaveSpawner waveSpawner = FindObjectOfType<WaveSpawner>();
             if (waveSpawner != null )
             {
