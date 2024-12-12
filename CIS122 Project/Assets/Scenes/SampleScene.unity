@@ -731,15 +731,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3060083344357736189, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 3060083344357736189, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 3060083344357736189, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.68
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 3060083344357736189, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
       propertyPath: m_LocalRotation.w
@@ -776,6 +776,18 @@ PrefabInstance:
     - target: {fileID: 4418261790634080816, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213989241081070869, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
+      propertyPath: positionOffset.x
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213989241081070869, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
+      propertyPath: positionOffset.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213989241081070869, guid: 3d9568fe9b0f302419789cab68f54398, type: 3}
+      propertyPath: positionOffset.z
+      value: 0.77
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1102,6 +1114,7 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   crouchKey: 306
+  healKey: 102
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
@@ -1109,6 +1122,7 @@ MonoBehaviour:
   groundPound: 0
   orientation: {fileID: 1670806497}
   state: 0
+  playerHealth: {fileID: 869979653}
 --- !u!82 &755561669
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1667,7 +1681,7 @@ MonoBehaviour:
   maxHealth: 100
   currHealth: 0
   numberOfHeals: 0
-  healthGainedFromHeal: 0
+  healthGainedFromHeal: 30
   axeSwingController: {fileID: 0}
 --- !u!1 &892524881
 GameObject:
@@ -2362,6 +2376,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6091542991764905068, guid: b5df891e53d62b740a89acd8f4b3ea7d, type: 3}
+      propertyPath: money
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091542991764905068, guid: b5df891e53d62b740a89acd8f4b3ea7d, type: 3}
       propertyPath: shopUI
       value: 
       objectReference: {fileID: 1852735670}
@@ -2374,9 +2392,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 344543636}
     - target: {fileID: 6091542991764905068, guid: b5df891e53d62b740a89acd8f4b3ea7d, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 869979653}
+    - target: {fileID: 6091542991764905068, guid: b5df891e53d62b740a89acd8f4b3ea7d, type: 3}
       propertyPath: userInterface
       value: 
       objectReference: {fileID: 1858880388}
+    - target: {fileID: 6091542991764905068, guid: b5df891e53d62b740a89acd8f4b3ea7d, type: 3}
+      propertyPath: products.Array.data[1].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 644bae1820858f24e81ab626294887f5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

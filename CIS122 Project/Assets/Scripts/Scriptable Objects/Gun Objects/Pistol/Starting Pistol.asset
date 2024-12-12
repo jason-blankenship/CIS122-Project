@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Starting Pistol
   damage: 16
   maxDistance: 100
-  currentAmmo: 16
+  currentAmmo: 18
   magSize: 18
   fireRate: 200
   reloadTime: 1
